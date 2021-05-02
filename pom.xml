@@ -45,7 +45,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <outputDirectory>../testserver/plugins</outputDirectory>
+                    <outputDirectory>../builds</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
@@ -73,8 +73,9 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- jda dependencies (required to relocate them) -->
+
         <dependency>
+            <!-- jda dependencies (required to relocate them) -->
             <groupId>com.neovisionaries</groupId>
             <artifactId>nv-websocket-client</artifactId>
             <version>2.14</version>
