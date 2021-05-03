@@ -22,7 +22,7 @@ public class FileBasics {
     }
 
     public enum FILETYPE {
-        CONFIG("config");
+        CONFIG("config"), COOKIES("cookies");
 
         private final String fileName;
         private final YamlConfiguration config = new YamlConfiguration();

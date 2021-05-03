@@ -6,13 +6,15 @@
 # DragonDiscordSync
 #-----------------------
 
-#Do not touch!
-Plugin-Version:
+Bot-token: ''
 
-Bot-token:
+Bot-prefix: 'c!'
+
+GuildID:
+ChatSync-ChannelID:
 
 
 #Avaible activities: Playing, Listening, Watching, Streaming, Custom
-Bot-activity: "Playing"
-Bot-activity-text: "minecraft with the boys"
-Bot-activity-url: "https://www.twitch.tv/Fraithor" #Streaming only (optional)
+Bot-activity: 'Playing'
+Bot-activity-text: 'minecraft with the boys'
+Bot-activity-url: 'https://www.twitch.tv/Fraithor' #Streaming only (optional)
