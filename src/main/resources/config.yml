@@ -7,11 +7,13 @@
 #-----------------------
 
 Bot-token: ''
-
 Bot-prefix: 'c!'
 
-GuildID:
+Main-ChannelID:
+#Leave blank for same as Main-ChannelID:
 ChatSync-ChannelID:
+AdvancementSync-ChannelID:
+DeathSync-ChannelID:
 
 
 #Avaible activities: Playing, Listening, Watching, Streaming, Custom
