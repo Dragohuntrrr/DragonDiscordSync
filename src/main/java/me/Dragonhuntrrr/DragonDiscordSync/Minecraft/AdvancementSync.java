@@ -16,11 +16,13 @@ public class AdvancementSync implements Listener {
     @EventHandler
     public void onAdvancement(PlayerAdvancementDoneEvent event) {
 
-        String advancement = event.getAdvancement().toString();
-        String criteria = event.getAdvancement().getCriteria().toString();
+        String advancement = event.getAdvancement().getKey().getKey();
         String playerName = event.getPlayer().getDisplayName();
-        String AdvancementChannelID = FileBasics.FILETYPE.CONFIG.getString("ChatSync-ChannelID");
-        String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Main-ChannelID");
+        String playerUUID = event.getPlayer().getUniqueId().toString();
+        String playerPNG = "https://mc-heads.net/avatar/" + playerUUID + "/50";
+        String AdvancementChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.AdvancementSync-ChannelID");
+        Color EmbedColor = Color.decode(FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.AchievementEmbedColor"));
+        String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.Main-Channel");
 
         if (AdvancementChannelID == null) {
             if (!(MainChannelID == null)) {
@@ -29,8 +31,9 @@ public class AdvancementSync implements Listener {
 
                 EmbedBuilder eb = new EmbedBuilder();
                 eb.setTitle(playerName + " Got the achievement " + advancement);
-                eb.setDescription(criteria);
-                eb.setColor(Color.green);
+                if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
+                    eb.setThumbnail(playerPNG);
+                eb.setColor(EmbedColor);
 
                 MainChannel.sendMessage(eb.build()).queue();
             } else {
@@ -42,8 +45,9 @@ public class AdvancementSync implements Listener {
 
             EmbedBuilder eb = new EmbedBuilder();
             eb.setTitle(playerName + " Got the achievement " + advancement);
-            eb.setDescription(criteria);
-            eb.setColor(Color.green);
+            if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
+                eb.setThumbnail(playerPNG);
+            eb.setColor(EmbedColor);
 
             AdvancementChannel.sendMessage(eb.build()).queue();
         }

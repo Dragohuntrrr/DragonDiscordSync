@@ -1,22 +1,28 @@
-#-----------------------
-# ___  ___  ___
-#|   \|   \/ __|
-#| |) | |) \__ \
-#|___/|___/|___/
-# DragonDiscordSync
-#-----------------------
+# DragonDiscordSync plugin by Fraithor! (Join my Public Server chromaMC.xyz) #
+# Need help? go to https://discord.gg/5mVkqAyReB! #
 
-Bot-token: ''
-Bot-prefix: 'c!'
-
-Main-ChannelID:
-#Leave blank for same as Main-ChannelID:
-ChatSync-ChannelID:
-AdvancementSync-ChannelID:
-DeathSync-ChannelID:
-
-
-#Avaible activities: Playing, Listening, Watching, Streaming, Custom
-Bot-activity: 'Playing'
-Bot-activity-text: 'minecraft with the boys'
-Bot-activity-url: 'https://www.twitch.tv/Fraithor' #Streaming only (optional)
+Discord:
+  Bot:
+    Token: "TOKEN"
+    Prefix: 'c!'
+    Bot-activity: 'Playing'
+    Bot-activity-text: 'minecraft with the boys'
+    Bot-activity-url: 'https://www.twitch.tv/Fraithor' #Streaming only (optional)
+  Channels:
+    Main-Channel: ''
+    ChatSync-ChannelID: ''
+    AdvancementSync-ChannelID: ''
+    DeathSync-ChannelID: ''
+    JoinLeaveSync-ChannelID: ''
+  Events:
+    Options:
+      PlayerHead: True
+      PlayerHeadSize: 50
+      ChatEmbedColor: '#ffffff'
+      AchievementEmbedColor: '#00ff00'
+      DeathEmbedColor: '#ff0000'
+      JoinLeaveEmbedColor: '#ffb700'
+    Log:
+      Death: True
+      Messages: True
+      Achievements: True

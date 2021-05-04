@@ -17,10 +17,11 @@ public class DeathSync implements Listener {
     public void onDeath(PlayerDeathEvent event) {
 
         String playerUUID = event.getEntity().getPlayer().getUniqueId().toString();
-        String playerSkin = "https://crafatar.com/renders/body/" + playerUUID;
+        String playerPNG = "https://mc-heads.net/avatar/" + playerUUID + "/50";
         String deathMessage = event.getDeathMessage();
-        String DeathChannelID = FileBasics.FILETYPE.CONFIG.getString("DeathSync-ChannelID");
-        String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Main-ChannelID");
+        String DeathChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.DeathSync-ChannelID");
+        String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.Main-Channel");
+        Color EmbedColor = Color.decode(FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.DeathEmbedColor"));
 
         if (DeathChannelID == null) {
             if (!(MainChannelID == null)) {
@@ -29,8 +30,9 @@ public class DeathSync implements Listener {
 
                 EmbedBuilder eb = new EmbedBuilder();
                 eb.setTitle(deathMessage);
-                eb.setColor(Color.red);
-                eb.setThumbnail(playerSkin);
+                eb.setColor(EmbedColor);
+                if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
+                    eb.setThumbnail(playerPNG);
 
                 MainChannel.sendMessage(eb.build()).queue();
             } else {
@@ -42,8 +44,9 @@ public class DeathSync implements Listener {
 
             EmbedBuilder eb = new EmbedBuilder();
             eb.setTitle(deathMessage);
-            eb.setColor(Color.red);
-            eb.setThumbnail(playerSkin);
+            eb.setColor(EmbedColor);
+            if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
+                eb.setThumbnail(playerPNG);
 
             DeathChannel.sendMessage(eb.build()).queue();
         }
