@@ -16,39 +16,44 @@ public class DeathSync implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
 
-        String playerUUID = event.getEntity().getPlayer().getUniqueId().toString();
-        String playerPNG = "https://mc-heads.net/avatar/" + playerUUID + "/50";
-        String deathMessage = event.getDeathMessage();
-        String DeathChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.DeathSync-ChannelID");
-        String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.Main-Channel");
-        Color EmbedColor = Color.decode(FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.DeathEmbedColor"));
+        if (FileBasics.FILETYPE.CONFIG.getBoolean("Discord.Events.Sync.Death")) {
 
-        if (DeathChannelID == null) {
-            if (!(MainChannelID == null)) {
+            String playerUUID = event.getEntity().getPlayer().getUniqueId().toString();
+            String playerPNG = "https://mc-heads.net/avatar/" + playerUUID + "/50";
+            String deathMessage = event.getDeathMessage();
+            String DeathChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.DeathSync-ChannelID");
+            String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.Main-Channel");
+            Color EmbedColor = Color.decode(FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.DeathEmbedColor"));
 
-                TextChannel MainChannel = DiscordBot.api.getTextChannelById(MainChannelID);
+            if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.DeathEmbedColor").equalsIgnoreCase("#ffffff")) {
+                EmbedColor = Color.white;
+            }
+
+            if (DeathChannelID == null) {
+                if (!(MainChannelID == null)) {
+
+                    TextChannel MainChannel = DiscordBot.api.getTextChannelById(MainChannelID);
+
+                    EmbedBuilder eb = new EmbedBuilder();
+                    eb.setTitle(deathMessage);
+                    eb.setColor(EmbedColor);
+                    eb.setThumbnail(playerPNG);
+
+                    MainChannel.sendMessage(eb.build()).queue();
+                } else {
+                    Bukkit.getLogger().severe("DragonDiscordSync: Invalid MainChannel-ID provided");
+                }
+            } else {
+
+                TextChannel DeathChannel = DiscordBot.api.getTextChannelById(DeathChannelID);
 
                 EmbedBuilder eb = new EmbedBuilder();
                 eb.setTitle(deathMessage);
                 eb.setColor(EmbedColor);
-                if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
-                    eb.setThumbnail(playerPNG);
-
-                MainChannel.sendMessage(eb.build()).queue();
-            } else {
-                Bukkit.getLogger().severe("DragonDiscordSync: Invalid MainChannel-ID provided");
-            }
-        } else {
-
-            TextChannel DeathChannel = DiscordBot.api.getTextChannelById(DeathChannelID);
-
-            EmbedBuilder eb = new EmbedBuilder();
-            eb.setTitle(deathMessage);
-            eb.setColor(EmbedColor);
-            if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
                 eb.setThumbnail(playerPNG);
 
-            DeathChannel.sendMessage(eb.build()).queue();
+                DeathChannel.sendMessage(eb.build()).queue();
+            }
         }
     }
 }

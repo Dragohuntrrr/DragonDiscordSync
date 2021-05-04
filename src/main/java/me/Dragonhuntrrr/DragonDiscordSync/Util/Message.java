@@ -22,4 +22,7 @@ public class Message {
         Bukkit.getLogger().fine(color("&f&l" + prefix() + " " + message));
     }
 
+    public static void Broadcast(String message) {
+        Bukkit.broadcastMessage(color(message));
+    }
 }

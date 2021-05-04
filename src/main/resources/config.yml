@@ -3,11 +3,10 @@
 
 Discord:
   Bot:
-    Token: "TOKEN"
-    Prefix: 'c!'
-    Bot-activity: 'Playing'
-    Bot-activity-text: 'minecraft with the boys'
-    Bot-activity-url: 'https://www.twitch.tv/Fraithor' #Streaming only (optional)
+    Token: TOKEN
+    Prefix: c!
+    Activity: Playing minecraft with the boys
+    Status: Online
   Channels:
     Main-Channel: ''
     ChatSync-ChannelID: ''
@@ -16,13 +15,14 @@ Discord:
     JoinLeaveSync-ChannelID: ''
   Events:
     Options:
-      PlayerHead: True
-      PlayerHeadSize: 50
-      ChatEmbedColor: '#ffffff'
       AchievementEmbedColor: '#00ff00'
       DeathEmbedColor: '#ff0000'
       JoinLeaveEmbedColor: '#ffb700'
-    Log:
+    Sync:
       Death: True
       Messages: True
       Achievements: True
+      JoinLeave: True
+Minecraft:
+  Options:
+    ChatFormat: '&7&l[&b&lDiscord &f|&b %channel%&7] &b%user% &6&l» &f%message%'

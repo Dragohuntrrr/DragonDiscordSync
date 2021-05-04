@@ -15,13 +15,17 @@ public class JoinLeaveSync implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        if (FileBasics.FILETYPE.CONFIG.getBoolean("Discord.Events.Sync.Death")) {
+            String playerName = event.getPlayer().getDisplayName();
+            String playerUUID = event.getPlayer().getUniqueId().toString();
+            String playerPNG = "https://mc-heads.net/avatar/" + playerUUID + "/50";
+            String JoinLeaveChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.JoinLeaveSync-ChannelID");
+            Color EmbedColor = Color.decode(FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.JoinLeaveEmbedColor"));
+            String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.Main-Channel");
 
-        String playerName = event.getPlayer().getDisplayName();
-        String playerUUID = event.getPlayer().getUniqueId().toString();
-        String playerPNG = "https://mc-heads.net/avatar/" + playerUUID + "/50";
-        String JoinLeaveChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.JoinLeaveSync-ChannelID");
-        Color EmbedColor = Color.decode(FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.JoinLeaveEmbedColor"));
-        String MainChannelID = FileBasics.FILETYPE.CONFIG.getString("Discord.Channels.Main-Channel");
+            if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.JoinLeaveEmbedColor").equalsIgnoreCase("#ffffff")) {
+                EmbedColor = Color.white;
+            }
 
             if (JoinLeaveChannelID == null) {
                 if (!(MainChannelID == null)) {
@@ -30,8 +34,7 @@ public class JoinLeaveSync implements Listener {
 
                     EmbedBuilder eb = new EmbedBuilder();
                     eb.setTitle(playerName + " joined the server");
-                    if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
-                      eb.setThumbnail(playerPNG);
+                    eb.setThumbnail(playerPNG);
                     eb.setColor(EmbedColor);
 
                     MainChannel.sendMessage(eb.build()).queue();
@@ -44,12 +47,12 @@ public class JoinLeaveSync implements Listener {
 
                 EmbedBuilder eb = new EmbedBuilder();
                 eb.setTitle(playerName + " joined the server");
-                if (FileBasics.FILETYPE.CONFIG.getString("Discord.Events.Options.PlayerHead").equalsIgnoreCase("true"))
-                  eb.setThumbnail(playerPNG);
+                eb.setThumbnail(playerPNG);
                 eb.setColor(EmbedColor);
 
                 JoinLeaveChannel.sendMessage(eb.build()).queue();
             }
         }
+    }
 
 }
