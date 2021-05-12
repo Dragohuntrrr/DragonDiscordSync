@@ -4,5 +4,5 @@ main: me.Dragonhuntrrr.DragonDiscordSync.DragonDiscordSync
 
 author: Dragonhuntrrr
 
-version: 1.0.1
+version: ${project.version}
 api-version: 1.16

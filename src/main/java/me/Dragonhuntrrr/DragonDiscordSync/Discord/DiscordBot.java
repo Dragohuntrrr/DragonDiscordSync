@@ -30,7 +30,7 @@ public class DiscordBot {
         try {
             api = JDABuilder.createDefault(FileBasics.FILETYPE.CONFIG.getString("Discord.Bot.Token"))
                     .addEventListeners(cookie, dms)
-                    .setActivity(Activity.of(Activity.ActivityType.CUSTOM_STATUS, FileBasics.FILETYPE.CONFIG.getString("Discord.Bot.Activity")))
+                    .setActivity(Activity.of(Activity.ActivityType.DEFAULT, FileBasics.FILETYPE.CONFIG.getString("Discord.Bot.Activity")))
                     .setStatus(OnlineStatus.valueOf(status))
                     .build();
         } catch (LoginException e) {

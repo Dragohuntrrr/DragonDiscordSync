@@ -7,7 +7,7 @@
     <groupId>me.Dragonhuntrrr</groupId>
     <artifactId>DragonDiscordSync</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>Beta-1.2</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

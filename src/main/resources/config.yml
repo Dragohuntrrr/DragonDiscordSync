@@ -1,11 +1,11 @@
-# DragonDiscordSync plugin by Fraithor! (Join my Public Server chromaMC.xyz) #
+# DragonDiscordSync plugin by Fraithor! (Website: Fraithor.com) #
 # Need help? go to https://discord.gg/5mVkqAyReB! #
 
 Discord:
   Bot:
     Token: TOKEN
     Prefix: c!
-    Activity: Playing minecraft with the boys
+    Activity: Minecraft with the boys
     Status: Online
   Channels:
     Main-Channel: ''
@@ -17,7 +17,8 @@ Discord:
     Options:
       AchievementEmbedColor: '#00ff00'
       DeathEmbedColor: '#ff0000'
-      JoinLeaveEmbedColor: '#ffb700'
+      JoinEmbedColor: '#ffb700'
+      LeaveEmbedColor: '#ff0000'
     Sync:
       Death: True
       Messages: True
